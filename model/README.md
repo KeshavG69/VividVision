@@ -21,16 +21,17 @@ You can download the pre-trained weights from the following link:
    - In your code, load the weights as follows:
      ```python
      import torch
-     from your_model_file import YourModelClass
+     from Generator import Generator
+     
 
      # Initialize the model architecture
-     model = YourModelClass()
+     gen = Generator(in_channels=1)
 
      # Load the pre-trained weights
-     model.load_state_dict(torch.load('models/model_weights.pth'))
+     gen.load_state_dict(torch.load('gen_model_30_face_25_landscape.pth'))
 
      # Set the model to evaluation mode
-     model.eval()
+     gen.eval()
      ```
 
 3. **Model Architecture:**
