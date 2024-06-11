@@ -5,8 +5,8 @@ import os
 
 # URL of the YouTube video you want to download
 video_url = "https://www.youtube.com/watch?v=Ydiz1Hzfx5s"
-audio_save_path = "/content/drive/MyDrive/Colorize/Indian_Village.mp3"
-video_save_path = "content/drive/MyDrive/Colorize/Indian_Village.mp4"
+audio_save_path = "Indian_Village.mp3"
+video_save_path = "Indian_Village.mp4"
 
 # Initialize a YouTube object with the video URL
 yt = YouTube(video_url)
