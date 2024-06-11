@@ -7,8 +7,8 @@ import torch.optim as optim
 import tqdm as tqdm
 
 
-train_dir = "/content/data/train_color"
-test_dir = "/content/data/test_color"
+train_dir = "train_color"
+test_dir = "test_color"
 
 train_paths_list = utils.get_file_path(train_dir)
 test_paths_list = utils.get_file_path(test_dir)
@@ -90,7 +90,7 @@ for epoch in tqdm(range(epochs)):
     )
 
 
-gen_model_save_path = "/content/drive/MyDrive/Colorize/gen_model.pth"
-dis_model_save_path = "/content/drive/MyDrive/Colorize/dis_model.pth"
+gen_model_save_path = "gen_model.pth"
+dis_model_save_path = "dis_model.pth"
 torch.save(obj=gen.state_dict(), f=gen_model_save_path)
 torch.save(obj=dis.state_dict(), f=dis_model_save_path)
