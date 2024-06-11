@@ -9,15 +9,15 @@ from PIL import Image
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-output_folder = "/content/drive/MyDrive/Colorize/Frames"
-video_path = "/content/drive/MyDrive/Colorize/Indian_Village.mp4"
+output_folder = "Frames"
+video_path = "Indian_Village.mp4"
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
 """Run this in shell to  convert video to frames"""
 
-"""!ffmpeg -i /content/drive/MyDrive/Colorize/Indian_Village.mp4 -vf fps=30 /content/drive/MyDrive/Colorize/Frames/frame-%04d.png"""
+"""!ffmpeg -i Indian_Village.mp4 -vf fps=30 Frames/frame-%04d.png"""
 
 frames = utils.get_file_path(output_folder)
 
@@ -31,7 +31,7 @@ gen = Generator(in_channels=1).to(device)
 
 gen.load_state_dict(
     torch.load(
-        "/content/drive/MyDrive/Colorize/gen_model_30_face_25_landscape.pth",
+        "gen_model_30_face_25_landscape.pth",
         map_location=torch.device(device),
     )
 )
@@ -56,7 +56,7 @@ for idx, batch in enumerate(
 fake_images = np.vstack(fake_images)
 real_images = np.vstack(real_images)
 
-output_dir = "/content/drive/MyDrive/Colorize/Coloured_Frames"
+output_dir = "Coloured_Frames"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
@@ -74,4 +74,4 @@ for i, img in enumerate(fake_images_uint8):
     print(f"Saved {filepath}")
 
 """Run this in shell to convert frames to video with audio"""
-"""!ffmpeg -framerate 30 -i /content/drive/MyDrive/Colorize/Coloured_Frames/%04d.jpg -i /content/drive/MyDrive/Colorize/Indian_Village.mp3 -c:v libx264 -c:a aac -r 30 -pix_fmt yuv420p -shortest /content/drive/MyDrive/Colorize/output_video.mp4"""
+"""!ffmpeg -framerate 30 -i Coloured_Frames/%04d.jpg -i Indian_Village.mp3 -c:v libx264 -c:a aac -r 30 -pix_fmt yuv420p -shortest output_video.mp4"""
