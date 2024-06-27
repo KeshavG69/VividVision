@@ -5,7 +5,9 @@ import torch.nn as nn
 from skimage.color import lab2rgb
 import re
 import numpy as np
-
+import moviepy.editor as mp
+import cv2
+from pytube import YouTube
 
 def walk_through_dir(dir_path):
     """Walks through dir_path returning its contents."""
@@ -66,3 +68,12 @@ def get_frame_number(file_path):
         return int(match.group(1))
     else:
         raise ValueError(f"No number found in file path: {file_path}")
+
+
+
+def download_yt(video_url, video_save_path, audio_save_path):
+    yt = YouTube(video_url)
+    video_stream = yt.streams.get_highest_resolution()
+    video_stream.download(video_save_path)
+    clip = mp.AudioFileClip(video_save_path)
+    clip.write_audiofile(audio_save_path)
