@@ -5,19 +5,26 @@ import torch
 from dataloaders import Colorization, datalaoder
 import numpy as np
 from PIL import Image
+import subprocess
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 output_folder = "Frames"
 video_path = "Indian_Village.mp4"
+audio_path="Indian_Village.mp3"
+video_url = "https://www.youtube.com/watch?v=Ydiz1Hzfx5s"
+
+utils.download_yt_file(
+    video_url=video_url, video_save_path=video_path, audio_save_path=audio_path
+)
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
-"""Run this in shell to  convert video to frames"""
 
-"""!ffmpeg -i Indian_Village.mp4 -vf fps=30 Frames/frame-%04d.png"""
+
+subprocess.run("ffmpeg -i Indian_Village.mp4 -vf fps=30 Frames/frame-%04d.png", shell=True, capture_output=True, text=True)
 
 frames = utils.get_file_path(output_folder)
 
@@ -73,5 +80,6 @@ for i, img in enumerate(fake_images_uint8):
 
     print(f"Saved {filepath}")
 
-"""Run this in shell to convert frames to video with audio"""
-"""!ffmpeg -framerate 30 -i Coloured_Frames/%04d.jpg -i Indian_Village.mp3 -c:v libx264 -c:a aac -r 30 -pix_fmt yuv420p -shortest output_video.mp4"""
+subprocess.run("fffmpeg -framerate 30 -i Coloured_Frames/%04d.jpg -i Indian_Village.mp3 -c:v libx264 -c:a aac -r 30 -pix_fmt yuv420p -shortest output_video.mp4", shell=True, capture_output=True, text=True)
+
+
