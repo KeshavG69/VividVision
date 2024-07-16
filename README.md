@@ -4,7 +4,7 @@
 
 **Video Colorization using Pix2Pix GAN Model**
 
-In this project, our primary goal is to colorize the black and white video available at [this link](https://www.youtube.com/watch?v=Ydiz1Hzfx5s) using the Pix2Pix Generative Adversarial Network (GAN) model. Leveraging advanced deep learning techniques, our implementation aims to breathe life into this monochromatic footage, enhancing its visual appeal and historical significance.
+In this project, our primary goal is to colorize the black and white video available at [this link](https://www.youtube.com/watch?v=Ydiz1Hzfx5s) using the [Pix2Pix paper](https://arxiv.org/pdf/1611.07004) Generative Adversarial Network (GAN) model. Leveraging advanced deep learning techniques, our implementation aims to breathe life into this monochromatic footage, enhancing its visual appeal and historical significance.
 
 **Key Features:**
 
